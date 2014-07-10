@@ -1,3 +1,7 @@
+import dto.User;
+import service.LoginService;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +18,19 @@ public class Login extends HttpServlet {
         String userId =request.getParameter("userId");
         String password =request.getParameter("password");
 
-//        boolean loginSuccess = authentificate(userId, password);
+        LoginService loginService = new LoginService();
+        boolean loginSuccess = loginService.authentificate(userId,password);
+        if (loginSuccess){
+            User user = loginService.getUser(userId);
+            request.setAttribute("user", user);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("success.jsp");
+            requestDispatcher.forward(request,response);
+//            response.sendRedirect("success.jsp");
+            return;
+        } else {
+            response.sendRedirect("LoginPage.jsp");
+            return;
+        }
     }
 
 

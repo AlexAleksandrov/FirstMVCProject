@@ -11,9 +11,9 @@
     <title>Login page</title>
 </head>
 <body>
-<form action="" method="post">
+<form action="login1" method="post">
     <br>User Id: <input type="text" name="userId">
-    <br>Password <input type="password" name="pass">
+    <br>Password <input type="password" name="password">
     <br><input type="submit">
 </form>
 </body>
